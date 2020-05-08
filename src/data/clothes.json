@@ -1,0 +1,103 @@
+{
+  "tShirts": [
+    {
+      "id": "90026",
+      "type": "tShirt",
+      "photo": "/s1front.png",
+      "name": "stoic t-shirt",
+      "price": "25"
+
+    },
+    {
+      "id": "73513",
+      "type":  "tShirt",
+      "photo": "/s2front.png",
+      "name": "sunrise t-shirt",
+      "price": "25"
+
+
+    },
+    {
+      "id": "12566",
+      "type":  "tShirt",
+      "photo": "/s3front.png",
+      "name": "clouds t-shirt",
+      "price": "25"
+
+    },
+    {
+      "id": "20952",
+      "type":  "tShirt",
+      "photo": "/s4front.png",
+      "name": "buddhism t-shirt",
+      "price": "25"
+
+    },
+    {
+      "id": "69331",
+      "type":  "tShirt",
+      "photo": "/s5front.png",
+      "name": "landscape t-shirt",
+      "price": "25"
+
+    },
+    {
+      "id": "94460",
+      "type":  "tShirt",
+      "photo": "/s6front.png",
+      "name": "point t-shirt",
+      "price": "25"
+
+    }
+  ],
+  "hoodies": [
+    {
+      "id": "34261",
+      "type": "hoodies",
+      "photo": "/h1front.png",
+      "name": "money hoodie",
+      "price": "50"
+
+    },
+    {
+      "id": "88212",
+      "type": "hoodies",
+      "photo": "/h2front.png",
+      "name": "wave hoodie",
+      "price": "50"
+
+
+    },
+    {
+      "id": "71715",
+      "type": "hoodies",
+      "photo": "/h3front.png",
+      "name": "mechanic hoodie",
+      "price": "50"
+
+    },
+    {
+      "id": "48231",
+      "type": "hoodies",
+      "photo": "/h4front.png",
+      "name": "together hoodie",
+      "price": "50"
+
+    },
+    {
+      "id": "43692",
+      "photo": "/h5front.png",
+      "name": "ornament hoodie",
+      "price": "50"
+
+    },
+    {
+      "id": "46681",
+      "type": "hoodies",
+      "photo": "/h6front.png",
+      "name": "cool guy hoodie",
+      "price": "50"
+
+    }
+  ]
+}
