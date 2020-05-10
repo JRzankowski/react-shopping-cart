@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import data from "../data/clothes"
 import Product from "./Product";
 import styled from "styled-components";
@@ -14,7 +14,7 @@ const ShirtsWrapper = styled.div`
   }
 `;
 
-const Shirts  = (props) => {
+const Shirts = (props) => {
 
     return (
         <ShirtsWrapper className='home'>
@@ -32,6 +32,9 @@ const Shirts  = (props) => {
                                      id={value.id}
                                      type={value.type}
                                      hover={hoverImage}
+                                     sizes={value.sizes}
+
+
                             />
                         </>
                     )

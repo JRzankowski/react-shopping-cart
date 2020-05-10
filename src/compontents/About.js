@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import styled from "styled-components";
 import image from '../assets/images/bg2.jpg'
 
@@ -29,7 +29,7 @@ const ImageWrapper = styled.div`
     
   }
 
-  &:hover{
+ &.animation{
     &,
     &:after,
     &:before {
@@ -49,11 +49,7 @@ const ImageWrapper = styled.div`
       mask-image: linear-gradient(to left top, white 51%, rgba(0,0,0,0) 0);
     }
   }
- 
- 
 }
-
-
 `;
 
 const AboutP = styled.p`
@@ -72,9 +68,17 @@ const AboutContact = styled.span`
 `;
 
 const About = () => {
+    useEffect(()=>{
+        document.querySelector(".photo-about").classList.add("animation")
+    });
+    useEffect(() => {
+        return () => {
+            document.querySelector(".photo-about").classList.remove("animation")
+        };
+    });
     return (
         <AboutWrapper>
-            <ImageWrapper image={image}/>
+            <ImageWrapper className="photo-about" image={image}/>
             <AboutP>We create for you limited collections of clothes with high quality materials. Each product sew in
                 Poland. The idea behind it, but now we germinated very long time. We would like for you to develop and
                 fulfill your expectations of us, so every note or suggestion would be for us a very important piece of

@@ -4,11 +4,13 @@ import {connect} from 'react-redux'
 import addToBasket from "../actions/addAction";
 
 const StyledProduct = styled.div`
-  width: 200px;
+  width:${props => props.isChoosed ? "100%" : "200px"};
+  position: ${props => props.isChoosed ? "" : "200px"};
   text-align: center;
   margin-bottom: 50px;
   cursor:pointer;
   padding-bottom: 20px;
+  
   &:hover{
     background-color: whitesmoke;
   }
@@ -37,20 +39,38 @@ const ProductCart = styled.a`
 `;
 
 const Product = (props) => {
-    const {img, title, price, description,addToBasket, id,hover} = props;
-    const [basketNumbers,setBasketNumbers] = useState(0);
-    console.log(addToBasket);
+    const {img, title, price, description, addToBasket, id, hover, sizes} = props;
+    const [productChoose, setProductChoose] = useState(false);
 
+    const showProductDetails = (e) => {
+        e.persist();
+        setProductChoose(true);
+        let productType = title.includes("shirt") ? "product-shirt" : "product-hoodie";
+        console.log(productType);
+
+        for (let el of document.querySelectorAll(`.${productType}`)) {
+            el.style.display = "none";
+        }
+        console.log(e.target);
+        if(e.target.parentElement.classList.contains(productType)){
+            e.target.parentElement.style.display="block"
+
+        }
+        if( e.target.classList.contains(productType)){
+            e.target.style.display="block"
+        }
+    };
     return (
-        <StyledProduct className="product">
+        <StyledProduct onClick={showProductDetails} isChoosed={productChoose}
+                       className={title.includes("shirt") ? "product-shirt" : "product-hoodie"}>
             <ProductImage className='product__img' src={img} alt={title}
-                          onMouseOver={(e)=>e.target.src = hover}
-                          onMouseOut ={(e)=>e.target.src = img}
+                          onMouseOver={(e) => e.target.src = hover}
+                          onMouseOut={(e) => e.target.src = img}
             />
-            <ProductTitle className='product__title'>{title}</ProductTitle>
-            <ProductPrice className='product__price'>${price}</ProductPrice>
-            <ProductCart onClick={()=>addToBasket(id)} className='product__cart' href='#'> Add to cart</ProductCart>
+            <ProductTitle>{title}</ProductTitle>
+            <ProductPrice>${price}</ProductPrice>
+            <ProductCart onClick={() => addToBasket(id)} href='#'> Add to cart</ProductCart>
         </StyledProduct>
     )
 };
-export default connect(null,{addToBasket})(Product);
+export default connect(null, {addToBasket})(Product);

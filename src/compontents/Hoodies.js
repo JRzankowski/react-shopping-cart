@@ -32,6 +32,7 @@ const Hoodies  = (props) => {
                                      id={value.id}
                                      type={value.type}
                                      hover={hoverImage}
+                                     sizes={value.sizes}
                             />
                         </>
                     )

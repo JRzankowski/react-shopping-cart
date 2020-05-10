@@ -5,49 +5,84 @@
       "type": "tShirt",
       "photo": "/s1front.png",
       "name": "stoic t-shirt",
-      "price": "25"
-
+      "price": "25",
+      "sizes": {
+        "S": "10",
+        "M": "25",
+        "L": "14",
+        "XL": "42",
+        "XXL": "2"
+      }
     },
     {
       "id": "73513",
-      "type":  "tShirt",
+      "type": "tShirt",
       "photo": "/s2front.png",
       "name": "sunrise t-shirt",
-      "price": "25"
-
-
+      "price": "25",
+      "sizes": {
+        "S": "14",
+        "M": "25",
+        "L": "14",
+        "XL": "42",
+        "XXL": "12"
+      }
     },
     {
       "id": "12566",
-      "type":  "tShirt",
+      "type": "tShirt",
       "photo": "/s3front.png",
       "name": "clouds t-shirt",
-      "price": "25"
-
+      "price": "25",
+      "sizes": {
+        "S": "17",
+        "M": "25",
+        "L": "14",
+        "XL": "42",
+        "XXL": "12"
+      }
     },
     {
       "id": "20952",
-      "type":  "tShirt",
+      "type": "tShirt",
       "photo": "/s4front.png",
       "name": "buddhism t-shirt",
-      "price": "25"
-
+      "price": "25",
+      "sizes": {
+        "S": "2",
+        "M": "25",
+        "L": "14",
+        "XL": "12",
+        "XXL": "12"
+      }
     },
     {
       "id": "69331",
-      "type":  "tShirt",
+      "type": "tShirt",
       "photo": "/s5front.png",
       "name": "landscape t-shirt",
-      "price": "25"
-
+      "price": "25",
+      "sizes": {
+        "S": "5",
+        "M": "25",
+        "L": "14",
+        "XL": "4",
+        "XXL": "12"
+      }
     },
     {
       "id": "94460",
-      "type":  "tShirt",
+      "type": "tShirt",
       "photo": "/s6front.png",
       "name": "point t-shirt",
-      "price": "25"
-
+      "price": "25",
+      "sizes": {
+        "S": "12",
+        "M": "25",
+        "L": "14",
+        "XL": "42",
+        "XXL": "12"
+      }
     }
   ],
   "hoodies": [
@@ -56,48 +91,83 @@
       "type": "hoodies",
       "photo": "/h1front.png",
       "name": "money hoodie",
-      "price": "50"
-
+      "price": "50",
+      "sizes": {
+        "S": "54",
+        "M": "25",
+        "L": "14",
+        "XL": "3",
+        "XXL": "12"
+      }
     },
     {
       "id": "88212",
       "type": "hoodies",
       "photo": "/h2front.png",
       "name": "wave hoodie",
-      "price": "50"
-
-
+      "price": "50",
+      "sizes": {
+        "S": "3",
+        "M": "25",
+        "L": "14",
+        "XL": "42",
+        "XXL": "12"
+      }
     },
     {
       "id": "71715",
       "type": "hoodies",
       "photo": "/h3front.png",
       "name": "mechanic hoodie",
-      "price": "50"
-
+      "price": "50",
+      "sizes": {
+        "S": "10",
+        "M": "25",
+        "L": "14",
+        "XL": "42",
+        "XXL": "12"
+      }
     },
     {
       "id": "48231",
       "type": "hoodies",
       "photo": "/h4front.png",
       "name": "together hoodie",
-      "price": "50"
-
+      "price": "50",
+      "sizes": {
+        "S": "10",
+        "M": "25",
+        "L": "4",
+        "XL": "63",
+        "XXL": "14"
+      }
     },
     {
       "id": "43692",
       "photo": "/h5front.png",
       "name": "ornament hoodie",
-      "price": "50"
-
+      "price": "50",
+      "sizes": {
+        "S": "6",
+        "M": "2",
+        "L": "15",
+        "XL": "14",
+        "XXL": "23"
+      }
     },
     {
       "id": "46681",
       "type": "hoodies",
       "photo": "/h6front.png",
       "name": "cool guy hoodie",
-      "price": "50"
-
+      "price": "50",
+      "sizes": {
+        "S": "3",
+        "M": "43",
+        "L": "3",
+        "XL": "41",
+        "XXL": "43"
+      }
     }
   ]
 }

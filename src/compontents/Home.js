@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import styled from "styled-components";
 import image from '../assets/images/bg1.jpg'
 
@@ -16,6 +16,7 @@ const ImageWrapper = styled.div`
   background-size: cover;
   position: relative;
   image-rendering: pixelated;
+  
   &:after,
   &:before {
     content: '';
@@ -27,10 +28,8 @@ const ImageWrapper = styled.div`
     left: 0;
     mask-position: 50% 50%;
     transition:  3s;
-    
   }
-
-  &:hover{
+  &.animation{
     &,
     &:after,
     &:before {
@@ -54,9 +53,17 @@ const ImageWrapper = styled.div`
 `;
 
 const Home = () => {
+    useEffect(()=>{
+       document.querySelector(".photo").classList.add("animation")
+    });
+    useEffect(() => {
+        return () => {
+            document.querySelector(".photo").classList.remove("animation")
+        };
+    });
     return (
         <HomeWrapper>
-            <ImageWrapper image={image}/>
+            <ImageWrapper className="photo" image={image}/>
 
         </HomeWrapper>
 
