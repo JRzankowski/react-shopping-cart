@@ -6,6 +6,7 @@ const AboutWrapper = styled.section`
   width: 100%;
   text-align: center;
   margin-top: 35px;
+  padding: 0 50px;
 `;
 
 const ImageWrapper = styled.div`
@@ -54,9 +55,11 @@ const ImageWrapper = styled.div`
 
 const AboutP = styled.p`
   margin-top: 40px;
+  text-align: center;
 `;
 
 const AboutContact = styled.span`
+  text-align: center;
   a{
     text-decoration: none;
     color: #8a8a8a;

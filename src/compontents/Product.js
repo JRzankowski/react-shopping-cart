@@ -54,7 +54,6 @@ const Product = (props) => {
         console.log(e.target);
         if(e.target.parentElement.classList.contains(productType)){
             e.target.parentElement.style.display="block"
-
         }
         if( e.target.classList.contains(productType)){
             e.target.style.display="block"

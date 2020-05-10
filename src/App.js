@@ -10,6 +10,7 @@ import Cart from "./compontents/Cart";
 import styled from "styled-components";
 import {Provider} from 'react-redux'
 import store from "./store";
+import Footer from "./compontents/Footer";
 
 
 const StyledWrapper = styled.div`
@@ -45,6 +46,7 @@ function App() {
                             <GlobalStyles/>
                         </>
                     </StyledWrapper>
+                    <Footer/>
                 </BrowserRouter>
             </div>
         </Provider>
