@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 
 const FooterWrapper = styled.footer`
-  position: relative;
+  position: absolute;
   bottom: 0;
   left: 0;
   right: 0;

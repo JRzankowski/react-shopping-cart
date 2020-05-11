@@ -46,7 +46,7 @@ function App() {
                             <GlobalStyles/>
                         </>
                     </StyledWrapper>
-                    <Footer/>
+                    {/*<Footer/>*/}
                 </BrowserRouter>
             </div>
         </Provider>
