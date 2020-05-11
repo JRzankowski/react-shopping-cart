@@ -35,11 +35,11 @@ const ProductCart = styled.a`
   font-size: 1rem;
   color: black;
   transition: .1s;
-  margin-top: ${props=>props.isChoosed ? "30px" : null};
+  margin-top: ${props => props.isChoosed ? "30px" : null};
 
   &:hover{
     color: darkred;
-    background-color: ${props=>props.isChoosed ? "whitesmoke" : null};
+    background-color: ${props => props.isChoosed ? "whitesmoke" : null};
   }
 `;
 const ProductInfoWrapper = styled.div`
@@ -91,10 +91,15 @@ const ProductSizes = styled.table`
 `;
 
 
-
 const Product = (props) => {
     const {img, title, price, description, addToBasket, id, hover, sizes} = props;
     const [productChoose, setProductChoose] = useState(false);
+    const [sizeChoose,setSizeChoose] = useState("S");
+    const setSize = (e)=>{
+        setSizeChoose(e.target.value) ;
+    };
+
+    console.log(sizeChoose);
     const showProductDetails = (e) => {
         e.persist();
         setProductChoose(true);
@@ -112,15 +117,15 @@ const Product = (props) => {
             e.target.style.display = "block"
         }
     };
-    const chooseInfo = (e)=>{
-        for(let el of document.querySelectorAll(".details")){
+    const chooseInfo = (e) => {
+        for (let el of document.querySelectorAll(".details")) {
             el.classList.remove("show")
         }
         e.target.classList.add("show");
-        if(e.target.classList.contains("info")){
+        if (e.target.classList.contains("info")) {
             document.querySelector(".details-info").classList.add("show");
             document.querySelector(".sizes-info").classList.remove("show");
-        }else{
+        } else {
             document.querySelector(".sizes-info").classList.add("show");
             document.querySelector(".details-info").classList.remove("show");
         }
@@ -148,49 +153,70 @@ const Product = (props) => {
 
             <ProductTitle>{title}</ProductTitle>
             <ProductPrice>${price}</ProductPrice>
+
+
             {
                 productChoose ? (
-                    <ProductInfoWrapper>
-                        <ProductInfoHeading>
-                            <span className="details show info" onClick={chooseInfo}>details</span>
-                            <span className="details sizes" onClick={chooseInfo}>size guide</span>
-                        </ProductInfoHeading>
-                        <ProductInfoDetails>
-                            <ProductDetails className="details-info show">
-                                <li>100% COTTON</li>
-                                <li>CLASSIC FIT</li>
-                            </ProductDetails>
-                            <ProductSizes className="sizes-info">
-                                <tbody>
-                                <tr>
-                                    <td>&nbsp;</td>
-                                    <td>S</td>
-                                    <td>M</td>
-                                    <td>L</td>
-                                    <td>XL</td>
-                                </tr>
-                                <tr>
-                                    <td>LENGTH</td>
-                                    <td>70</td>
-                                    <td>72</td>
-                                    <td>74</td>
-                                    <td>76</td>
-                                </tr>
-                                <tr>
-                                    <td>CHEST</td>
-                                    <td>54</td>
-                                    <td>57</td>
-                                    <td>60</td>
-                                    <td>63</td>
-                                </tr>
-                                </tbody>
-                            </ProductSizes>
-                        </ProductInfoDetails>
-                    </ProductInfoWrapper>
+                    <>
+                        <select value={sizeChoose} onChange={setSize}>
+                            {
+                                Object.keys(sizes).map(function (value, index) {
 
-                ): null
+                                    return (
+                                        <>
+                                            <option value={value} key={index}>{value}</option>
+                                        </>
+                                    )
+                                })
+
+                            }
+                        </select>
+                        <ProductInfoWrapper>
+                            <ProductInfoHeading>
+                                <span className="details show info" onClick={chooseInfo}>details</span>
+                                <span className="details sizes" onClick={chooseInfo}>size guide</span>
+                            </ProductInfoHeading>
+                            <ProductInfoDetails>
+                                <ProductDetails className="details-info show">
+                                    <li>100% COTTON</li>
+                                    <li>CLASSIC FIT</li>
+                                </ProductDetails>
+                                <ProductSizes className="sizes-info">
+                                    <tbody>
+                                    <tr>
+                                        <td>&nbsp;</td>
+                                        <td>S</td>
+                                        <td>M</td>
+                                        <td>L</td>
+                                        <td>XL</td>
+                                        <td>XXL</td>
+                                    </tr>
+                                    <tr>
+                                        <td>LENGTH</td>
+                                        <td>70</td>
+                                        <td>72</td>
+                                        <td>74</td>
+                                        <td>76</td>
+                                        <td>80</td>
+                                    </tr>
+                                    <tr>
+                                        <td>CHEST</td>
+                                        <td>54</td>
+                                        <td>57</td>
+                                        <td>60</td>
+                                        <td>63</td>
+                                        <td>66</td>
+                                    </tr>
+                                    </tbody>
+                                </ProductSizes>
+                            </ProductInfoDetails>
+                        </ProductInfoWrapper>
+                    </>
+
+                ) : null
             }
-            <ProductCart isChoosed={productChoose} onClick={productChoose ? () => addToBasket(id) : showProductDetails} href='#'> {productChoose ? "Add to cart" : "More info"}</ProductCart>
+            <ProductCart isChoosed={productChoose} onClick={productChoose ? () => addToBasket(id,sizeChoose) : showProductDetails}
+                         href='#'> {productChoose ? "Add to cart" : "More info"}</ProductCart>
 
         </StyledProduct>
     )

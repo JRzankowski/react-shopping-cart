@@ -18,6 +18,7 @@ const initialState = {
             numbers: 0,
             inCart: false,
             photo: "/s1front.png",
+            size: null
         },
         73513: {
             id: "73513",
@@ -25,7 +26,8 @@ const initialState = {
             price: 25,
             numbers: 0,
             inCart: false,
-            photo: "/s2front.png"
+            photo: "/s2front.png",
+            size: null
         },
         12566: {
             id: "12566",
@@ -33,7 +35,8 @@ const initialState = {
             price: 25,
             numbers: 0,
             inCart: false,
-            photo: "/s3front.png"
+            photo: "/s3front.png",
+            size: null
         },
         20952: {
             id: "20952",
@@ -41,7 +44,8 @@ const initialState = {
             price: 25,
             numbers: 0,
             inCart: false,
-            photo: "/s4front.png"
+            photo: "/s4front.png",
+            size: null
         },
         69331: {
             id: "69331",
@@ -49,7 +53,8 @@ const initialState = {
             price: 25,
             numbers: 0,
             inCart: false,
-            photo: "/s5front.png"
+            photo: "/s5front.png",
+            size: null
         },
         94460: {
             id: "94460",
@@ -57,7 +62,8 @@ const initialState = {
             price: 25,
             numbers: 0,
             inCart: false,
-            photo: "/s6front.png"
+            photo: "/s6front.png",
+            size: null
         },
         34261: {
             id: "34261",
@@ -65,7 +71,8 @@ const initialState = {
             price: 50,
             numbers: 0,
             inCart: false,
-            photo: "/h1front.png"
+            photo: "/h1front.png",
+            size: null
         },
         88212: {
             id: "88212",
@@ -73,7 +80,8 @@ const initialState = {
             price: 50,
             numbers: 0,
             inCart: false,
-            photo: "/h2front.png"
+            photo: "/h2front.png",
+            size: null
         },
         71715: {
             id: "71715",
@@ -81,7 +89,8 @@ const initialState = {
             price: 50,
             numbers: 0,
             inCart: false,
-            photo: "/h3front.png"
+            photo: "/h3front.png",
+            size: null
         },
         48231: {
             id: "48231",
@@ -89,7 +98,8 @@ const initialState = {
             price: 50,
             numbers: 0,
             inCart: false,
-            photo: "/h4front.png"
+            photo: "/h4front.png",
+            size: null
         },
         43692: {
             id: "43692",
@@ -97,7 +107,8 @@ const initialState = {
             price: 50,
             numbers: 0,
             inCart: false,
-            photo: "/h5front.png"
+            photo: "/h5front.png",
+            size: null
         },
         46681: {
             id: "46681",
@@ -105,7 +116,8 @@ const initialState = {
             price: 50,
             numbers: 0,
             inCart: false,
-            photo: "/h6front.png"
+            photo: "/h6front.png",
+            size: null
         }
     }
 };
@@ -117,7 +129,8 @@ export default (state = initialState, action) => {
             productSelected = {...state.products[action.payload]};
             productSelected.numbers += 1;
             productSelected.inCart = true;
-            console.log(productSelected);
+            productSelected.size = action.size;
+            console.log(action.size);
             console.log(state.products[action.payload].price);
             return {
                 ...state,

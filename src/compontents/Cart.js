@@ -106,7 +106,7 @@ const Cart = ({basketProps,productQuantity,clearProduct}) => {
                         <TiDeleteOutline onClick={()=> clearProduct(product.id)} className='delete'/>
                         <img src={image} alt='image'/>
                         <span className="product__name">
-                        {product.name}
+                        {product.name}({product.size})
                     </span>
                     </CartProductInfo>
                     <CartProductPrice className="product__price">
