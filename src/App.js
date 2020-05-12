@@ -11,6 +11,7 @@ import styled from "styled-components";
 import {Provider} from 'react-redux'
 import store from "./store";
 import Footer from "./compontents/Footer";
+import ProductDetails from "./compontents/ProductDetails";
 
 
 const StyledWrapper = styled.div`
@@ -42,6 +43,8 @@ function App() {
                                 <Route path='/cart'>
                                     <Cart/>
                                 </Route>
+                                <Route path="/:id" component={ProductDetails} />
+                                <Route path="/:id" component={ProductDetails} />
                             </Switch>
                             <GlobalStyles/>
                         </>
