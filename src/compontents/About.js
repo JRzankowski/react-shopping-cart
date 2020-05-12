@@ -7,6 +7,7 @@ const AboutWrapper = styled.section`
   text-align: center;
   margin-top: 35px;
   padding: 0 50px;
+  margin-bottom: 100px;
 `;
 
 const ImageWrapper = styled.div`

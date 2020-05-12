@@ -1,8 +1,9 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import styled from "styled-components";
 import {connect} from 'react-redux'
 import addToBasket from "../actions/addAction";
 import Zoom from 'react-medium-image-zoom'
+import Popup from "reactjs-popup";
 import 'react-medium-image-zoom/dist/styles.css'
 
 const StyledProduct = styled.div`
@@ -27,9 +28,12 @@ const ProductTitle = styled.p`
 const ProductPrice = styled.p`
   font-weight: bold;
 `;
-const ProductCart = styled.a`
+const ProductCart = styled.button`
+  border: none;
+  background-color: transparent;
+  display: inline-block;
   text-decoration: none;
-  display: block;
+  //display: block;
   position: relative;
   z-index: 5;
   font-size: 1rem;
@@ -94,18 +98,14 @@ const ProductSizes = styled.table`
 const Product = (props) => {
     const {img, title, price, description, addToBasket, id, hover, sizes} = props;
     const [productChoose, setProductChoose] = useState(false);
-    const [sizeChoose,setSizeChoose] = useState("S");
-    const setSize = (e)=>{
-        setSizeChoose(e.target.value) ;
+    const [sizeChoose, setSizeChoose] = useState("S");
+    const setSize = (e) => {
+        setSizeChoose(e.target.value);
     };
-
-    console.log(sizeChoose);
     const showProductDetails = (e) => {
         e.persist();
         setProductChoose(true);
         let productType = title.includes("shirt") ? "product-shirt" : "product-hoodie";
-        console.log(productType);
-
         for (let el of document.querySelectorAll(`.${productType}`)) {
             el.style.display = "none";
         }
@@ -115,6 +115,14 @@ const Product = (props) => {
         }
         if (e.target.classList.contains(productType)) {
             e.target.style.display = "block"
+        }
+    };
+    const addToBasketBtn = (id, sizeChoose) => {
+        addToBasket(id, sizeChoose);
+        setProductChoose(false);
+        let productType = title.includes("shirt") ? "product-shirt" : "product-hoodie";
+        for (let el of document.querySelectorAll(`.${productType}`)) {
+            el.style.display = "block";
         }
     };
     const chooseInfo = (e) => {
@@ -131,6 +139,8 @@ const Product = (props) => {
         }
 
     };
+
+
     return (
         <StyledProduct isChoosed={productChoose}
                        className={title.includes("shirt") ? "product-shirt" : "product-hoodie"}>
@@ -191,6 +201,7 @@ const Product = (props) => {
                                         <td>XL</td>
                                         <td>XXL</td>
                                     </tr>
+                                    
                                     <tr>
                                         <td>LENGTH</td>
                                         <td>70</td>
@@ -211,12 +222,20 @@ const Product = (props) => {
                                 </ProductSizes>
                             </ProductInfoDetails>
                         </ProductInfoWrapper>
+                        <ProductCart isChoosed={productChoose}
+                                     onClick={productChoose ? () => addToBasketBtn(id, sizeChoose) : showProductDetails}
+                                     href='#'> {productChoose ? "Add to cart" : "More info"}</ProductCart>
                     </>
 
-                ) : null
+                ) : (
+
+
+                    <ProductCart isChoosed={productChoose}
+                                 onClick={productChoose ? () => addToBasketBtn(id, sizeChoose) : showProductDetails}
+                                 href='#'> {productChoose ? "Add to cart" : "More info"}</ProductCart>
+                )
             }
-            <ProductCart isChoosed={productChoose} onClick={productChoose ? () => addToBasket(id,sizeChoose) : showProductDetails}
-                         href='#'> {productChoose ? "Add to cart" : "More info"}</ProductCart>
+
 
         </StyledProduct>
     )

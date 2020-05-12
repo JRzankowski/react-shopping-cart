@@ -7,6 +7,7 @@ import {productQuantity, clearProduct} from '../actions/productQuantity'
 const CartWrapper = styled.div`
   max-width: 650px;
   justify-content: space-around;
+  padding: 0 10px;
   margin: 50px auto 0;
 `;
 const CartHeader = styled.div`
@@ -17,21 +18,34 @@ const CartHeader = styled.div`
     margin: 0 auto;
 `;
 const CartTitle = styled.h5`
-  width: 45%;
+  width: 55%;
 `;
 const CartPrice = styled.h5`
   width: 15%;
+  display: block;
+  @media(max-width: 444px){
+    visibility: hidden;
+    
+  }
 `;
 const CartQuantity = styled.h5`
-  width: 30%;
+  width: 20%;
+  display: block;
+  @media(max-width: 444px){
+    visibility: hidden;
+  }
 `;
 const CartTotal = styled.h5`
   width: 10%;
+  display: block;
 `;
 
 const CartSummary = styled.div`
   display: flex;
   justify-content: flex-end;
+  h4:first-of-type{
+    font-weight: 400;
+  }
 `;
 const CartSummaryTitle = styled.h4`
   width: 30%;
@@ -54,14 +68,34 @@ const CartProductWrapper = styled.div`
   margin-bottom: 10px;
 `;
 const CartProductInfo = styled.div`
-  width: 45%;
+  width: 55%;
   display: flex;
   align-items: center;
+  position: relative;
+  
   span{
-    font-size: .9rem;
+    font-size: 15px;
+     @media(max-width: 444px){
+      position: absolute;
+      top: -1px;
+      left: 116px;
+    }
   }
-  .delete{
-    font-size: 1.1rem;
+  span.product__price--number{
+    display: none;
+    @media(max-width: 444px){
+    display: block;
+    position: absolute;
+    top: 35px;
+    left: 0;
+  }
+  }
+  svg.delete{
+    position: absolute;
+    font-size: 15px;
+    height: 16px;
+    width: 16px;
+    left: -10px;
     cursor: pointer;
   }
   img{
@@ -72,9 +106,19 @@ const CartProductInfo = styled.div`
 `;
 const CartProductPrice = styled.div`
   width: 15%;
+  position: relative;
+  @media(max-width: 444px){
+    span{
+      display: none;
+     }
+    }
+
+  
 `;
 const CartProductQuantity = styled.div`
-  width: 30%;
+  width: 20%;
+  position: relative;
+  left: -20px;
   svg{
     cursor: pointer;
     position: relative;
@@ -84,11 +128,11 @@ const CartProductQuantity = styled.div`
 const CartProductTotal = styled.div`
   display: flex;
   justify-content: flex-end;
+  
 `;
 
 
-
-const Cart = ({basketProps,productQuantity,clearProduct}) => {
+const Cart = ({basketProps, productQuantity, clearProduct}) => {
     let productsInCart = [];
 
     Object.keys(basketProps.products).forEach(function (item) {
@@ -103,10 +147,13 @@ const Cart = ({basketProps,productQuantity,clearProduct}) => {
             <>
                 <CartProductWrapper className="product__container">
                     <CartProductInfo className="product__info">
-                        <TiDeleteOutline onClick={()=> clearProduct(product.id)} className='delete'/>
+                        <TiDeleteOutline onClick={() => clearProduct(product.id)} className='delete'/>
                         <img src={image} alt='image'/>
                         <span className="product__name">
                         {product.name}({product.size})
+                            <span className="product__price--number">
+                        ${product.price}
+                        </span>
                     </span>
                     </CartProductInfo>
                     <CartProductPrice className="product__price">
@@ -115,9 +162,9 @@ const Cart = ({basketProps,productQuantity,clearProduct}) => {
                     </span>
                     </CartProductPrice>
                     <CartProductQuantity className="product__quantity">
-                        <TiChevronLeft onClick={()=> productQuantity('decrease',product.id)} className='decrease'/>
+                        <TiChevronLeft onClick={() => productQuantity('decrease', product.id)} className='decrease'/>
                         <span className='product__quantity'>{product.numbers}</span>
-                        <TiChevronRight onClick={()=> productQuantity('increase',product.id)} className='increase'/>
+                        <TiChevronRight onClick={() => productQuantity('increase', product.id)} className='increase'/>
                     </CartProductQuantity>
                     <CartProductTotal className="product__total">
                         ${product.numbers * product.price}
@@ -129,7 +176,7 @@ const Cart = ({basketProps,productQuantity,clearProduct}) => {
     return (
         <CartWrapper>
             <CartHeader>
-                <CartTitle>Product</CartTitle>
+                <CartTitle>Products</CartTitle>
                 <CartPrice>Price</CartPrice>
                 <CartQuantity>Quantity</CartQuantity>
                 <CartTotal>Total</CartTotal>
@@ -145,8 +192,8 @@ const Cart = ({basketProps,productQuantity,clearProduct}) => {
     )
 };
 
-const mapStateToProps = state =>({
+const mapStateToProps = state => ({
     basketProps: state.basketState
 });
 
-export default connect(mapStateToProps,{productQuantity,clearProduct})(Cart);
+export default connect(mapStateToProps, {productQuantity, clearProduct})(Cart);
