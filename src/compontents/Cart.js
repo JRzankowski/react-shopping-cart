@@ -43,14 +43,33 @@ const CartTotal = styled.h5`
 const CartSummary = styled.div`
   display: flex;
   justify-content: flex-end;
-  h4:first-of-type{
+  flex-wrap: wrap;
+  padding-left: 15px;
+  h4:last-of-type{
     font-weight: 400;
+  }
+  div{
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+
+    @media(max-width: 430px){
+      border-bottom: 1px solid #a7a7a7;
+
+      
+    }
   }
 `;
 const CartSummaryTitle = styled.h4`
   width: 30%;
 `;
 const CartSummaryPrice = styled.h4`
+  width: 10%;
+`;
+const CartDeliveryTitle = styled.h4`
+  width: 30%;
+`;
+const CartDeliveryPrice = styled.h4`
   width: 10%;
 `;
 
@@ -142,7 +161,6 @@ const Cart = ({basketProps, productQuantity, clearProduct}) => {
     });
     productsInCart = productsInCart.map((product, index) => {
         let image = require(`../assets/images${product.photo}`);
-        console.log(product.price);
         return (
             <>
                 <CartProductWrapper className="product__container">
@@ -185,8 +203,20 @@ const Cart = ({basketProps, productQuantity, clearProduct}) => {
                 {productsInCart}
             </CartProducts>
             <CartSummary>
-                <CartSummaryTitle>Basket total</CartSummaryTitle>
-                <CartSummaryPrice>${basketProps.cartCost}</CartSummaryPrice>
+                {
+                    productsInCart.length > 0 ? (
+                        <div>
+                            <CartDeliveryTitle>Delivery</CartDeliveryTitle>
+                            <CartDeliveryPrice>10$</CartDeliveryPrice>
+                        </div>
+                    ) : null
+                }
+                <div>
+                    <CartSummaryTitle>Basket total</CartSummaryTitle>
+                    <CartSummaryPrice>${productsInCart.length ? basketProps.cartCost+10 : basketProps.cartCost}</CartSummaryPrice>
+                </div>
+
+
             </CartSummary>
         </CartWrapper>
     )
