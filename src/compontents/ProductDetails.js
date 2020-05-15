@@ -261,7 +261,6 @@ const ProductDetails = (props) => {
                     <PopupContentP onClick={()=>setPopupActive(false)}>continue shopping</PopupContentP>
                     <PopupContentSpan>or</PopupContentSpan>
                     <Link to="/cart">go to the cart</Link>
-
                 </PopupContent>
             </ProductPopup>
 

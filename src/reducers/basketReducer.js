@@ -161,11 +161,10 @@ export default (state = initialState, action) => {
             productSelected = {...state.products[action.payload]};
             let newCartCost = 0;
             let newBasketNumbers = 0;
-            if (productSelected.numbers === 0) {
-                productSelected.numbers = 0;
+            if (productSelected.numbers === 1) {
+                productSelected.numbers = 1;
                 newCartCost = state.cartCost;
                 newBasketNumbers = state.basketNumbers;
-                productSelected.inCart = false;
             } else {
                 productSelected.numbers -= 1;
                 newCartCost = state.cartCost - state.products[action.payload].price;

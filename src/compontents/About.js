@@ -82,7 +82,7 @@ const About = () => {
     });
     return (
         <AboutWrapper>
-            <ImageWrapper className="photo-about" image={image}/>
+            <ImageWrapper loading="lazy" className="photo-about" image={image}/>
             <AboutP>We create for you limited collections of clothes with high quality materials. Each product sew in
                 Poland. The idea behind it, but now we germinated very long time. We would like for you to develop and
                 fulfill your expectations of us, so every note or suggestion would be for us a very important piece of
