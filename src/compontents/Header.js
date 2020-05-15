@@ -77,7 +77,7 @@ const HeaderLink = styled(Link)`
     font-size: 16px;
     user-select: none;
     outline: none;
-    z-index: 5;
+
     color: black;
     transition: .2s;
     &:hover{

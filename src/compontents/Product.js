@@ -41,53 +41,7 @@ const ProductCart = styled(Link)`
     background-color: whitesmoke;
   }
 `;
-const ProductInfoWrapper = styled.div`
-  margin-top: 15px;
 
-`;
-const ProductInfoHeading = styled.div`
-  display: flex;
-  justify-content: center;
-  margin-bottom: 20px;
-  span{
-    cursor:pointer;
-    color: #636363;
-    &:hover{
-      color: darkred;
-    }
-  }
-  span.show{
-    border-bottom: 1px solid black;
-    color: black;
-  }
-  span:nth-of-type(1){
-    margin-right: 10px;
-  }
-  span:nth-of-type(2){
-    margin-left: 10px;
-  }
- 
-`;
-const ProductInfoDetails = styled.div`
-`;
-const ProductDetails = styled.div`
-  display: none;
-  &.show{
-    display: block;
-  }
-`;
-const ProductSizes = styled.table`
-  display: none;
-  &.show{
-    display: inline-block;
-  }
-  margin: 0 auto;
-  border-collapse: collapse;
-  th,td{
-    border: 1px solid #646464;
-    padding: 7px;
-  }
-`;
 
 
 const Product = (props) => {
@@ -98,8 +52,8 @@ const Product = (props) => {
                        className={title.includes("shirt") ? "product-shirt" : "product-hoodie"}>
 
             <ProductImage className='product__img' src={img} alt={title}
-                          onMouseOver={(e) => hover }
-                          onMouseOut={(e) => img }
+                          onMouseOver={(e) => e.target.src = hover }
+                          onMouseOut={(e) => e.target.src = img }
             />
             <Zoom>
                 <ProductImage className='product__hover' src={hover} alt={title}/>

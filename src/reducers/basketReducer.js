@@ -164,10 +164,11 @@ export default (state = initialState, action) => {
             if (productSelected.numbers === 0) {
                 productSelected.numbers = 0;
                 newCartCost = state.cartCost;
-                newBasketNumbers = state.basketNumbers
+                newBasketNumbers = state.basketNumbers;
+                productSelected.inCart = false;
             } else {
                 productSelected.numbers -= 1;
-                newCartCost = state.cartCost - state.products[action.payload].price
+                newCartCost = state.cartCost - state.products[action.payload].price;
                 newBasketNumbers = state.basketNumbers - 1
             }
 
