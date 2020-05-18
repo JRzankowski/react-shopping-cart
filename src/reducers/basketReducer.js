@@ -3,13 +3,16 @@ import {
     DECREASE_QUANTITY,
     GET_NUMBERS_BASKET,
     INCREASE_QUANTITY,
-    CLEAR_PRODUCT
+    CLEAR_PRODUCT,
+    PROMO_CODE
 } from "../actions/type";
-import data from '../data/clothes'
+
 
 const initialState = {
     basketNumbers: 0,
     cartCost: 0,
+    deliveryCost: false,
+    basketDiscount: false,
     products: {
         90026: {
             id: "90026",
@@ -130,17 +133,29 @@ export default (state = initialState, action) => {
             productSelected.numbers += 1;
             productSelected.inCart = true;
             productSelected.size = action.size;
-            console.log(action.size);
-            console.log(state.products[action.payload].price);
-            return {
-                ...state,
-                basketNumbers: state.basketNumbers + 1,
-                cartCost: state.cartCost + state.products[action.payload].price,
-                products: {
-                    ...state.products,
-                    [action.payload]: productSelected
-                }
-            };
+            if (!state.deliveryCost) {
+                return {
+                    ...state,
+                    basketNumbers: state.basketNumbers + 1,
+                    cartCost: state.cartCost + state.products[action.payload].price + 10,
+                    deliveryCost: true,
+                    products: {
+                        ...state.products,
+                        [action.payload]: productSelected
+                    }
+                };
+            } else {
+                return {
+                    ...state,
+                    basketNumbers: state.basketNumbers + 1,
+                    cartCost: state.cartCost + state.products[action.payload].price,
+                    products: {
+                        ...state.products,
+                        [action.payload]: productSelected
+                    }
+                };
+            }
+
         case GET_NUMBERS_BASKET:
             return {
                 ...state
@@ -148,6 +163,7 @@ export default (state = initialState, action) => {
         case INCREASE_QUANTITY:
             productSelected = {...state.products[action.payload]};
             productSelected.numbers += 1;
+
             return {
                 ...state,
                 cartCost: state.cartCost + state.products[action.payload].price,
@@ -194,6 +210,16 @@ export default (state = initialState, action) => {
                     [action.payload]: productSelected
                 }
             };
+        case PROMO_CODE:
+            if (action.payload === "jshopDelivery") {
+                return {
+                    ...state,
+                    basketDiscount: 10,
+                    cartCost: state.cartCost - 10
+                }
+            }
+
+
         default:
             return state;
     }

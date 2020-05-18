@@ -1,4 +1,4 @@
-import { INCREASE_QUANTITY, DECREASE_QUANTITY,CLEAR_PRODUCT} from './type.js'
+import { INCREASE_QUANTITY, DECREASE_QUANTITY,CLEAR_PRODUCT } from './type.js'
 
 export const productQuantity = (action, productName) =>{
     return(dispatch) =>{
@@ -11,11 +11,13 @@ export const productQuantity = (action, productName) =>{
 };
 
 export const clearProduct = (productName) =>{
+    console.log(productName);
     return(dispatch) =>{
         dispatch({
             type: CLEAR_PRODUCT,
-            payload : productName
+            payload : productName,
         })
 
     }
 };
+
