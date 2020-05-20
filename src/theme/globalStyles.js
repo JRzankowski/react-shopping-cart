@@ -13,6 +13,7 @@ const GlobalStyles = createGlobalStyle`
     margin: 0;
     scroll-behavior: smooth;
     font-family: 'Inconsolata', monospace;
+    padding-bottom: 50px;
   }
   button {
     padding: 0;

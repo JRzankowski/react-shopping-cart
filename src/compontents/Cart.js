@@ -5,6 +5,7 @@ import {TiDeleteOutline, TiChevronLeft, TiChevronRight} from 'react-icons/ti'
 import {productQuantity, clearProduct} from '../actions/productQuantity'
 import promoCode from "../actions/promoCode";
 
+
 const CartWrapper = styled.div`
   max-width: 650px;
   justify-content: space-around;
@@ -45,7 +46,6 @@ const CartSummary = styled.div`
   display: flex;
   justify-content: flex-end;
   flex-wrap: wrap;
-  padding-left: 15px;
   h4:last-of-type{
     font-weight: 400;
   }
@@ -61,7 +61,11 @@ const CartSummary = styled.div`
  
 `;
 const CartSummaryTitle = styled.span`
+  @media(max-width: 380px){
+    width: auto;
+  } 
   width: 30%;
+  
 `;
 const CartSummaryPrice = styled.span`
   width: 10%;
@@ -101,20 +105,22 @@ const CartProductInfo = styled.div`
   
   span{
     font-size: 15px;
+    width: 100%;
      @media(max-width: 444px){
-     font-size: 14px;
+      font-size: 14px;
       position: absolute;
       top: -1px;
       left: 116px;
+      width: 100px;
     }
   }
   span.product__price--number{
     display: none;
     @media(max-width: 444px){
-    display: block;
-    position: absolute;
-    top: 35px;
-    left: 0;
+      display: block;
+      position: absolute;
+      top: 35px;
+      left: 0;
   }
   }
   svg.delete{
@@ -158,21 +164,41 @@ const CartProductTotal = styled.div`
 `;
 const CardPromoCode = styled.div`
   border-bottom: none !important;
-  position: relative;
-  left: -500px;
+  margin-bottom: 20px;
+  @media(min-width: 444px){
+    position: relative;
+
+
+  }
   div{
-    position: absolute;
-    left: 0;
+    border-bottom: none !important;
+    position: relative;
+    @media(min-width: 444px){
+       position: absolute;
+       width: auto;
+       left: 16px;
+       top: 23px;
+    }
+    &:after{
+      display: ${props => props.discount || props.discount === null ? "block" : "none"};
+      content: '${props => props.discount ? "promocode active" : "wrong promocode"}';
+      color: ${props => props.discount ? "green" : "darkred"};
+      position: absolute;
+      font-size: 12px;
+      top: 25px;
+      left: 0;
+    }
   }
   input{
-    margin-bottom: 20px;
     transition: all .5s ease;
     outline: none;
+    display: block;
     box-shadow: none ;
     border: 0 ;
     color: #030303 ;
     letter-spacing: 2px;
     font-size: 14px;
+    position: relative;
   }
   button{
     color: #6b6b6b;
@@ -180,24 +206,25 @@ const CardPromoCode = styled.div`
     padding: 5px;
     border: 1px dashed #6b6b6b;
     transition: .1s;
+    outline: none;
+    user-select: none;
+
     &:hover{
       background-color: black;
       color: white;
       border-color: black;
     }
   }
-
-
 `;
 
 
-const Cart = ({basketProps, productQuantity, clearProduct,promoCode}) => {
+const Cart = ({basketProps, productQuantity, clearProduct, promoCode}) => {
     let productsInCart = [];
-
-    const promoCodeCheck = (e) =>{
+    const promoCodeCheck = (e) => {
         promoCode(e.target.previousElementSibling.value);
-        console.log(basketProps)
+        e.target.previousElementSibling.value = "";
     };
+
     Object.keys(basketProps.products).forEach(function (item) {
         if (basketProps.products[item].inCart) {
             productsInCart.push(basketProps.products[item])
@@ -210,7 +237,7 @@ const Cart = ({basketProps, productQuantity, clearProduct,promoCode}) => {
             <>
                 <CartProductWrapper className="product__container">
                     <CartProductInfo className="product__info">
-                        <TiDeleteOutline onClick={() => clearProduct(product.id,"jshop25")} className='delete'/>
+                        <TiDeleteOutline onClick={() => clearProduct(product.id, "jshop25")} className='delete'/>
                         <img src={image} alt='image'/>
                         <span className="product__name">
                         {product.name}({product.size})
@@ -251,26 +278,23 @@ const Cart = ({basketProps, productQuantity, clearProduct,promoCode}) => {
                 {
                     productsInCart.length > 0 ? (
                         <>
-                            <CardPromoCode>
+                            <CardPromoCode discount={basketProps.basketDiscount}>
                                 <div>
                                     <input placeholder="ENTER PROMOCODE" type="text"/>
-                                    <button onClick={(e)=>promoCodeCheck(e)}>GO</button>
+                                    <button onClick={(e) => promoCodeCheck(e)}>GO</button>
                                 </div>
-
                             </CardPromoCode>
                             <div>
                                 <CartDeliveryTitle>Delivery</CartDeliveryTitle>
                                 <CartDeliveryPrice>$10</CartDeliveryPrice>
-
                             </div>
-                            <div>
-                                {basketProps.basketDiscount ? (
-                                    <>
+                            {basketProps.basketDiscount ? (
+                                <div>
                                     <CartDiscountTitle>Discount</CartDiscountTitle>
                                     <CartDiscountPrice>{`-$${basketProps.basketDiscount}`}</CartDiscountPrice>
-                                    </>
-                                ): null}
-                            </div>
+                                </div>
+                            ) : null}
+
                         </>
                     ) : null
                 }

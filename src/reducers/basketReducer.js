@@ -217,6 +217,12 @@ export default (state = initialState, action) => {
                     basketDiscount: 10,
                     cartCost: state.cartCost - 10
                 }
+            }else{
+                return{
+                    ...state,
+                    basketDiscount: null,
+
+                }
             }
 
 

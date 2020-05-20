@@ -8,8 +8,6 @@ import 'react-medium-image-zoom/dist/styles.css'
 import useOutsideClick from "./useOutsideRef";
 
 const StyledProduct = styled.div`
-  // width:${props => props.isChoosed ? "100%" : "200px"};
-  // position: ${props => props.isChoosed ? "" : "200px"};
   text-align: center;
   margin-bottom: 50px;
   padding-bottom: 20px;

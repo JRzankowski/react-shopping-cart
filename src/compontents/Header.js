@@ -64,7 +64,7 @@ const HeaderList = styled.ul`
 
 const HeaderListItem = styled.ul`
   list-style: none;
-  padding: 5px 10px;
+  padding: 5px 5px;
   transition: .1s;
   cursor: pointer;
  
@@ -77,6 +77,7 @@ const HeaderLink = styled(Link)`
     font-size: 16px;
     user-select: none;
     outline: none;
+    width: 75px;
 
     color: black;
     transition: .2s;
